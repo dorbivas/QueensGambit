@@ -18,6 +18,18 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Q1.c" />
+    <ClCompile Include="Q2.c" />
+    <ClCompile Include="Q3.c" />
+    <ClCompile Include="Util.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Q1.h" />
+    <ClInclude Include="Q2.h" />
+    <ClInclude Include="Q3.h" />
+    <ClInclude Include="Util.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -138,9 +150,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Main.c" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
