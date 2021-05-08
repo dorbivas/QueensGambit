@@ -10,6 +10,8 @@ DECRIPTION:
 /////////////////////////////////////////////////////////////////////////////
 TODO's:
 
+General:
+    must add Free functions for all the allocations (!!!)
 Q3:
     check all ListCell functions 
     check path builder
