@@ -36,6 +36,7 @@ void checkAlloc(void* ptr, char* msg);
 
 void chessPosSetter(chessPos* dest, chessPos src);
 
+
 /*Q1*/
 int IntToCharNum(int num);
 int IntToCharLetter(int num);
@@ -46,4 +47,11 @@ void printRoofNumbers();
 bool comparePos(chessPos a, int row, int col);
 int charToInt(char ch);
 
+/*Q4*/
+void addNewTailToListPos(chessPosList* lst, chessPos newTailPos);
+void replaceTailInListPos(chessPosList* lst, chessPosCell* newTail, chessPosCell* oldTail);
+void makeEmptyList(chessPosList* lst);
+bool isEmptyList(chessPosList* lst);
+chessPosCell* createNewListNode(chessPos pos, chessPosCell* next);
+void insertNodeToEndList(chessPosList* lst, chessPosCell* tail);
 

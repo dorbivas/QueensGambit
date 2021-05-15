@@ -4,8 +4,9 @@
 #include "Q1.h"
 #include "Q2.h"
 #include "Q3.h"
+#include "Q4.h" /*TODO change includs*/
 
-#define MAX_MOVES 24 /*5X5 - 1*/
+#define MAX_MOVES 24 /*TODO universal ? 5X5 - 1*/
 
 chessPosList* findKnightPathCoveringAllBoard(pathTree* path_tree)
 {
@@ -50,60 +51,11 @@ void findKnightPathCoveringAllBoardRec(treeNode* root, treeNodeListCell* currLis
 				findKnightPathCoveringAllBoardRec(currListHead, currListHead->next, res, lvls);
 			}
 			*lvls--;
-
 		}
 	}
-
-}
-
-void addNewTailToListPos(chessPosList* lst, chessPos newTailPos) {
-	chessPosCell* newTail;
-	newTail = createNewListNode(newTailPos, NULL);
-	insertNodeToEndList(lst, newTail);
-}
-
-void replaceTailInListPos(chessPosList* lst, chessPosCell* newTail,chessPosCell* oldTail) {
-	chessPosCell* tmp;
-	if (isEmptyList(lst)) {
-		lst->head = lst->tail = newTail;
-	}
-	else {
-		tmp = lst->tail;
-		lst->tail = newTail;
-		oldTail->next = newTail;
-		free(tmp);
-	}
-	newTail->next = NULL;
 }
 
 
-void makeEmptyList(chessPosList* lst){
-	lst->head = lst->tail = NULL;
-}
-
-bool isEmptyList(chessPosList* lst){
-	return (lst->head == NULL);
-}
-
-chessPosCell* createNewListNode(chessPos pos, chessPosCell* next){
-	chessPosCell* res;
-	res = (chessPosCell*)malloc(sizeof(chessPosCell));
-	chessPosSetter(&res->position, pos);
-	res->next = next;
-	return res;
-}
-
-void insertNodeToEndList(chessPosList* lst, chessPosCell* tail)
-{
-	if (isEmptyList(lst)) {
-		lst->head = lst->tail = tail;
-	}
-	else {
-		lst->tail->next = tail;
-		lst->tail = tail;
-	}
-	tail->next = NULL;
-}
 
 /* pathtree
 	* get curr list 
