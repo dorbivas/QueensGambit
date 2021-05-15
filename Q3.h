@@ -15,7 +15,7 @@ typedef struct _treeNode {
 
 typedef struct _treeNodeListCell {
 	treeNode* node;
-	struct _treeNodeListcell* next;
+	struct _treeNodeListCell* next;
 } treeNodeListCell;
 
 typedef struct _pathTree {
@@ -44,9 +44,9 @@ void updateVisitMatrix(bool ** visitsMatrix, chessPos pos);
 
 bool** CreateVisitsMatrix(int size);
 
-void insertDataToHeadList(treeNodeListCell** oldHead, chessPos pos);
+void insertDataToHeadList(treeNodeListCell ** oldHead, chessPos pos);
 
-void insertNodeToHeadList(treeNodeListCell* newHead, treeNodeListCell** oldHead);
+void insertNodeToHeadList(treeNodeListCell* newHead, treeNodeListCell ** oldHead);
 
 pathTree CreatePathTree(chessPos pos);
 

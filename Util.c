@@ -56,7 +56,6 @@ void checkAlloc(void* ptr, char* msg)
 	}
 }
 
-/*TODO*/
 void chessPosSetter(chessPos* dest, chessPos src) {
 	(*dest)[0] = src[0];
 	(*dest)[1] = src[1];

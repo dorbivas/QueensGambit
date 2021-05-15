@@ -13,10 +13,7 @@ TODO's: Idan Gay
 General:
     must add Free functions for all the allocations (!!!)
 Q3:
-    check all ListCell functions 
-    check path builder
-    check print path
-    fund a better way to orginize the files - for easier future fixes
+    IT WORKS!!!
 
 /////////////////////////////////////////////////////////////////////////////
 CHANGES:
@@ -26,12 +23,15 @@ Name - date (dd/mm/yy hh:mm)
 list between the * rows all the changes
 ****************************************************************************
 
-Idan 15/05/21 15:15
+Idan 15/05/21 20:23
 ****************************************************************************
 1) In Q3, switched all the visitMatrix signatures from (***) to (**) due to an error in isVisited
 
 2) Added chessPosSetter in Utill.c for easy and secure setting
 
+3) Fixed a bug where next in ListCell was nnot defined correctly (_treeNodeListcell instead of _treeNodeListCell)
+
+4) Finished Q3 testing
 ****************************************************************************
 
 
