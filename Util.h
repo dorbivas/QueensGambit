@@ -34,6 +34,8 @@ typedef int Coords[2];
 
 void checkAlloc(void* ptr, char* msg);
 
+void chessPosSetter(chessPos* dest, chessPos src);
+
 /*Q1*/
 int IntToCharNum(int num);
 int IntToCharLetter(int num);

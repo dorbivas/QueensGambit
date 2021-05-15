@@ -30,17 +30,17 @@ void printPathRec(treeNode* root);
 
 pathTree findAllPossibleKnightPaths(chessPos* startingPosition);
 
-void pathBuildRec(treeNode* root, chessPosArray*** validMovesBoard, bool*** visitsMatrix);
+void pathBuildRec(treeNode* root, chessPosArray*** validMovesBoard, bool ** visitsMatrix);
 
-treeNodeListCell* CreateNextPosList(bool*** visitsMatrix, chessPosArray allNextPositions);
+treeNodeListCell* CreateNextPosList(bool ** visitsMatrix, chessPosArray allNextPositions);
 
 bool* peeler(bool*** visitsMatrix, chessPos pos);
 
-bool isVisited(bool*** visitsMatrix, chessPos pos);
+bool isVisited(bool ** visitsMatrix, chessPos pos);
 
 chessPosArray nextKnightPositions(chessPosArray*** validMovesBoard, chessPos* currPos);
 
-void updateVisitMatrix(bool*** visitsMatrix, chessPos pos);
+void updateVisitMatrix(bool ** visitsMatrix, chessPos pos);
 
 bool** CreateVisitsMatrix(int size);
 

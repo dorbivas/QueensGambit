@@ -6,15 +6,15 @@
 
 void main()
 {
-	testNextKNightPos();
-	/*chessPos start = { 'A','1' };
+	//testNextKNightPos();
+	chessPos start = { 'A','1' };
 	pathTree path = findAllPossibleKnightPaths(&start);
 	printPath(path);
-	*/
+	
 }
 /**********TODO*********/
 /*IDAN
-* nextKnightPositions
+* nextKnightPositions - V
 * CreateNextPosList
 * Modolaring board size
 
@@ -46,14 +46,14 @@ pathTree findAllPossibleKnightPaths(chessPos* startingPosition) {
 	pathTree path;
 	path = CreatePathTree(*startingPosition);
 	bool** visitsMatrix = CreateVisitsMatrix(BOARD_SIZE);
-	chessPosArray*** validMovesBoard = validKnightMoves(); /*TODO on demend?*/
-	updateVisitMatrix(&visitsMatrix, path.roots->position);
-	pathBuildRec(path.roots, validMovesBoard, &visitsMatrix);
+	chessPosArray*** validMovesBoard = validKnightMoves(); 
+	updateVisitMatrix(visitsMatrix, path.roots->position);
+	pathBuildRec(path.roots, validMovesBoard, visitsMatrix);
 
 	return path;
 }
 
-void pathBuildRec(treeNode* root, chessPosArray*** validMovesBoard, bool*** visitsMatrix) {
+void pathBuildRec(treeNode* root, chessPosArray*** validMovesBoard, bool ** visitsMatrix) {
 	treeNodeListCell* curr;
 	root->next_possible_positions = CreateNextPosList(visitsMatrix, nextKnightPositions(validMovesBoard, root->position));
 	curr = root->next_possible_positions;
@@ -66,7 +66,7 @@ void pathBuildRec(treeNode* root, chessPosArray*** validMovesBoard, bool*** visi
 	updateVisitMatrix(visitsMatrix, root->position); /*TODO */
 }
 
-treeNodeListCell* CreateNextPosList(bool*** visitsMatrix, chessPosArray allNextPositions) {
+treeNodeListCell* CreateNextPosList(bool ** visitsMatrix, chessPosArray allNextPositions) {
 	treeNodeListCell* head = NULL;
 	int i;
 	for (i = 0; i < allNextPositions.size; i++)
@@ -77,19 +77,11 @@ treeNodeListCell* CreateNextPosList(bool*** visitsMatrix, chessPosArray allNextP
 	return head;
 }
 
-bool* peeler(bool*** visitsMatrix, chessPos pos) {
-	return *(visitsMatrix)[charToInt(pos[0])][charToInt(pos[1])];
-}
-
-//void* voidPeeler(void** matrix, chessPos pos) {
-//	return matrix[charToInt(pos[0]) - 1][charToInt(pos[1]) - 1];
-//}
 
 
 /*return if pos was visited*/
-bool isVisited(bool*** visitsMatrix, chessPos pos) {
-	return (/**peeler(visitsMatrix, pos)*/
-		*(visitsMatrix)[charToInt(pos[0])][charToInt(pos[1])]);
+bool isVisited(bool** visitsMatrix, chessPos pos) {
+	return (visitsMatrix)[charToInt(pos[0])][charToInt(pos[1])];
 }
 
 chessPosArray nextKnightPositions(chessPosArray*** validMovesBoard, chessPos currPos) {
@@ -98,10 +90,10 @@ chessPosArray nextKnightPositions(chessPosArray*** validMovesBoard, chessPos cur
 	//return  *(validMovesBoard)[charToInt(currPos[0])][charToInt(currPos[1])];
 }
 
-void updateVisitMatrix(bool*** visitsMatrix, chessPos pos) {
+void updateVisitMatrix(bool** visitsMatrix, chessPos pos) {
 	bool tmp = isVisited(visitsMatrix, pos);
-	//*peeler(visitsMatrix, pos) = !tmp; /*TODO change name ?*/
-	*(visitsMatrix)[charToInt(pos[0])][charToInt(pos[1])] = !tmp;
+
+	(visitsMatrix)[charToInt(pos[0])][charToInt(pos[1])] = !tmp;
 }
 
 bool** CreateVisitsMatrix(int size) {
@@ -123,8 +115,7 @@ void insertDataToHeadList(treeNodeListCell** oldHead, chessPos pos)
 	insertNodeToHeadList(newHeadNode, oldHead);
 }
 
-void insertNodeToHeadList(treeNodeListCell* newHead, treeNodeListCell** oldHead)
-{
+void insertNodeToHeadList(treeNodeListCell* newHead, treeNodeListCell** oldHead){
 	newHead->next = *oldHead;
 	oldHead = &newHead; /*update the pointer to list head*/
 }
@@ -158,6 +149,7 @@ treeNodeListCell* CreateListCellnotvoid(chessPos pos) {
 	head->node = (treeNode*)malloc(sizeof(treeNode));
 	checkAlloc(head->node, "failed growing root");
 
-	*head->node->position = pos;
+	chessPosSetter(&head->node->position, pos);
+	//*head->node->position = pos;
 	return head;
 }

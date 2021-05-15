@@ -26,8 +26,17 @@ Name - date (dd/mm/yy hh:mm)
 list between the * rows all the changes
 ****************************************************************************
 
+Idan 15/05/21 15:15
+****************************************************************************
+1) In Q3, switched all the visitMatrix signatures from (***) to (**) due to an error in isVisited
+
+2) Added chessPosSetter in Utill.c for easy and secure setting
+
+****************************************************************************
+
+
 Idan 08/05/21 16:15 
-/***************************************************************************
+****************************************************************************
 1) IntToChar functions is returning the coordinate value example (A1 => 0,0)
 
 2) Q1 changed from (**chessPosArray) type to (***chessPosArray) in order for better use in Q3
