@@ -22,6 +22,21 @@ Name - date (dd/mm/yy hh:mm)
 ****************************************************************************
 list between the * rows all the changes
 ****************************************************************************
+
+Dor 21/05/21 17:18
+****************************************************************************
+1) Massive Load of changes!!! /*TODO CHANGE*/
+
+2) Q3 Q1 free funcs added, free visit Matrix and valid Knight moves board.
+
+3) Commentary, notes and cleanning junk funcs.
+
+4) ordering idan unordered funcs.
+
+5) handeling minors TODO's
+****************************************************************************
+
+
 Idan 21/05/21 17:00
 ****************************************************************************
 1) Massive changes!!!

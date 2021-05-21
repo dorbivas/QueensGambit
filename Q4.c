@@ -6,21 +6,16 @@
 #include "Q3.h"
 #include "Q4.h" /*TODO change includs*/
 
-#define MAX_STEPS 25 /*BOARD_SIZE ^ 2*/
+#define MAX_STEPS 25 /*BOARD_SIZE ^ 2*/ 
 
-
-
-
-chessPosList* findKnightPathCoveringAllBoard(pathTree* path_tree)
-{
+chessPosList* findKnightPathCoveringAllBoard(pathTree* path_tree){
 	int lvls = 1;
 	chessPosList* resList = (chessPosList*)malloc(sizeof(chessPosList));
-	treeNode* root = path_tree->roots;
-	treeNodeListCell* curr = root->next_possible_positions; /*curr list*/
+	treeNodeListCell* curr = path_tree->roots->next_possible_positions; /*curr list*/
 	int loopCntr;
 	loopCntr = 0;
 	makeEmptyList(resList);
-	addNewTailToListPos(resList,root->position);
+	addNewTailToListPos(resList, path_tree->roots->position);
 
 	//findKnightPathCoveringAllBoardRec(root, curr, &res , &lvls);
 	rec(curr, &resList, &lvls, &loopCntr);
@@ -48,7 +43,6 @@ void rec(treeNodeListCell* currListHead, chessPosList** lstPtr, int* lvls, int* 
 			if (currListHead->next) {
 				rec(currListHead->next, lstPtr, lvls, recCntr);
 			}
-
 		}
 	}
 

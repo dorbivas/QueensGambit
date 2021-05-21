@@ -6,10 +6,11 @@
 chessPosArray*** validKnightMoves() {
 
 	int rows, cols;
+	/*Table for knight possiable positions from coord : (0,0) , 8 options around */
 	Coords CoordTable[MAX_MOVES] = {{-2 , -1}, {-2 , 1},
 									 {2 , 1} , {2 , -1},
 									 {1 , -2}, {1 , 2} ,
-									 {-1 , 2},{-1 , -2} };/*TODO NOTES*/
+									 {-1 , 2},{-1 , -2} };
 
 	chessPosArray*** board = initiateChessBoard();
 
@@ -29,7 +30,6 @@ chessPos* validSquareMoves(int rows, int cols, Coords scanCoords[], unsigned int
 	int tempRows, tempCols;
 	chessPos* chessPosRes = (chessPos*)malloc(MAX_MOVES * sizeof(chessPos));
 	checkAlloc(chessPosRes, "failed to malloc chessPosRes");
-	/*TODO CHEECK ALLOC*/
 
 	/*TODO smart way to scan moves around the Knight*/
 	for (i = 0; i < MAX_MOVES; i++) {
@@ -50,7 +50,7 @@ chessPos* validSquareMoves(int rows, int cols, Coords scanCoords[], unsigned int
 	return chessPosRes;
 }
 
-chessPosArray*** initiateChessBoard() {/*TODO change the name*/
+chessPosArray*** initiateChessBoard() {
 	int i,j;
 	chessPosArray*** board;
 	board = (chessPosArray***)malloc(BOARD_SIZE * sizeof(chessPosArray**));

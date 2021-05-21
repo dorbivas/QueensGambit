@@ -58,4 +58,6 @@ void freePath(pathTree* path);
 
 void freePathRec(treeNodeListCell* cell, int* cntr);
 
+void freeVisitsMatrix(bool** matrix);
+
 

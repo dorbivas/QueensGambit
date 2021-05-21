@@ -4,15 +4,6 @@
 #include "Q2.h"
 #include "Q3.h"
 
-
-/**********TODO*********/
-/*IDAN
-* nextKnightPositions - V
-* CreateNextPosList
-* Modolaring board size
-
-*/
-
 /****************TESTS FUNCTIONS************************/
 void testNextKNightPos() {
 	chessPos pos = { 'B','3' };
@@ -34,6 +25,8 @@ void printPathRec(treeNode* root)
 	else
 		printf("[%c%c] --> NULL", (root->position)[0], (root->position)[1]); /*last one*/
 }
+/*****************************************************/
+
 /*Q3*/
 pathTree findAllPossibleKnightPaths(chessPos* startingPosition) {
 	pathTree path;
@@ -42,7 +35,9 @@ pathTree findAllPossibleKnightPaths(chessPos* startingPosition) {
 	chessPosArray*** validMovesBoard = validKnightMoves(); 
 	updateVisitMatrix(visitsMatrix, path.roots->position);
 	pathBuildRec(path.roots, validMovesBoard, visitsMatrix);
-	/*TODO add free visitMatrix,free validMovesBoard*/
+
+	freeChessBoard(validMovesBoard);
+	freeVisitsMatrix(visitsMatrix);
 	return path;
 }
 
@@ -86,8 +81,6 @@ treeNodeListCell* CreateNextPosList(bool ** visitsMatrix, chessPosArray allNextP
 	return head;
 }
 
-
-
 /*return if pos was visited*/
 bool isVisited(bool** visitsMatrix, chessPos pos) {
 	return (visitsMatrix)[charToInt(pos[0])][charToInt(pos[1])];
@@ -103,17 +96,20 @@ void updateVisitMatrix(bool** visitsMatrix, chessPos pos) {
 	(visitsMatrix)[charToInt(pos[0])][charToInt(pos[1])] = !tmp;
 }
 
+
 bool** CreateVisitsMatrix(int size) {
 	int i, j;
 	bool** res = (bool**)malloc(size * sizeof(bool*));
+	checkAlloc(res, "failed too bool a board");
 
-	for (i = 0; i < size; i++)
+	for (i = 0; i < size; i++){
 		res[i] = (bool*)calloc(size, sizeof(bool)); /*all visits start on false*/
+		checkAlloc(res[i], "failed too bool a board[i]");
+	}
 	return res;
 }
 
-void insertDataToHeadList(treeNodeListCell ** oldHead, chessPos pos)
-{
+void insertDataToHeadList(treeNodeListCell ** oldHead, chessPos pos){
 	treeNodeListCell* newHeadNode =	CreateListCellnotvoid(pos);
 	insertNodeToHeadList(newHeadNode, oldHead);
 }
@@ -124,7 +120,6 @@ void insertNodeToHeadList(treeNodeListCell* newHead, treeNodeListCell ** oldHead
 }
 
 pathTree CreatePathTree(chessPos pos) {
-
 	pathTree path;
 	path.roots = (treeNode*)malloc(sizeof(treeNode));
 	checkAlloc(path.roots, "failed growing new roots");
@@ -178,4 +173,13 @@ void freePathRec(treeNodeListCell* cell,int* cntr) {
 		free(cell);
 	}
 }
+
+void freeVisitsMatrix(bool** matrix) {
+	int i;
+	for (int i = 0; i < BOARD_SIZE; i++)
+		free(matrix[i]);
+	free(matrix);
+}
+
+
 

@@ -21,10 +21,8 @@ void freeChessBoard(chessPosArray*** board) {
 }
 
 /*Q2 util*/
-void printRoofNumbers()
-{
+void printRoofNumbers(){
 	int i;
-	//printf("        ");
 	printf("\t");
 
 	for ( i = 1; i < BOARD_SIZE + 1; i++)
@@ -35,7 +33,6 @@ void printRoofNumbers()
 void printBoard(int boardValues[BOARD_SIZE][BOARD_SIZE]) {
 
 	printRoofNumbers(BOARD_SIZE);
-
 	for (int row = 0; row < BOARD_SIZE; row++) {
 		printf("%3c    |", 'A' + row); /* columns numbers*/
 		for (int col = 0; col < BOARD_SIZE; col++) {

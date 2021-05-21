@@ -55,15 +55,13 @@ void removeExcessCells(chessPosList* lst, int boardValues[BOARD_SIZE][BOARD_SIZE
 	curr = prev = lst->head;
 
 	while (curr != NULL) {
-		if (checkApearence(boardValues, curr->position))
-		{
+		if (checkApearence(boardValues, curr->position)){
 			/*updates the bucket to its order appearnce (true) and advance the counter*/
 			boardValues[charToInt(curr->position[0])][charToInt(curr->position[1])] = cellsLocation++;
 			prev = curr;
 			curr = curr->next;
 		}
-		else
-		{
+		else{
 			tmp = curr->next;
 			removeSingleCell(prev, lst);
 			curr = tmp;
@@ -76,7 +74,7 @@ bool checkApearence(int boardValues[BOARD_SIZE][BOARD_SIZE], chessPos pos) {
 	return ((boardValues[charToInt(pos[0])][charToInt(pos[1])]) == 0);
 }
 
-void removeSingleCell(chessPosCell* prevCell, chessPosList* list) { /*TODO check if list needed?*/
+void removeSingleCell(chessPosCell* prevCell, chessPosList* list) { 
 
 	chessPosCell* curr = prevCell->next;
 
