@@ -53,3 +53,9 @@ pathTree CreatePathTree(chessPos pos);
 void CreateListCell(treeNodeListCell* head, chessPos pos);
 
 treeNodeListCell* CreateListCellnotvoid(chessPos pos);
+
+void freePath(pathTree* path);
+
+void freePathRec(treeNodeListCell* cell, int* cntr);
+
+

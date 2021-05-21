@@ -10,11 +10,24 @@ int IntToCharLetter(int num) {
 	return 'A' + num;
 }
 
+void freeChessBoard(chessPosArray*** board) {
+	int i, j;
+	for (i = 0; i < BOARD_SIZE; i++) {
+		for (j = 0; j < BOARD_SIZE; j++)
+			free(board[i][j]);
+		free(board[i]);
+	}
+	free(board);
+}
+
 /*Q2 util*/
 void printRoofNumbers()
 {
-	printf("        ");
-	for (int i = 1; i < BOARD_SIZE + 1; i++)
+	int i;
+	//printf("        ");
+	printf("\t");
+
+	for ( i = 1; i < BOARD_SIZE + 1; i++)
 		printf("%3d   ", i);
 	printf("\n\n");
 }
@@ -68,6 +81,53 @@ void addNewTailToListPos(chessPosList* lst, chessPos newTailPos) {
 	insertNodeToEndList(lst, newTail);
 }
 
+void updateListPosTail(chessPosList* lst, chessPos newTailPos) {
+	chessPosSetter(&(lst->tail->position), newTailPos);
+}
+
+void addNewHeadToListPos(chessPosList* lst, chessPos newTailPos) {
+	chessPosCell* newHead = createNewListNode(newTailPos, NULL);
+	insertNodeToStartList(lst, newHead);
+}
+
+void insertNodeToStartList(chessPosList* lst, chessPosCell* newHead) {
+	if (isEmptyList(lst)) {
+		lst->head = lst->tail = newHead;
+	}
+	else {
+		newHead->next = lst->head;
+		lst->head = newHead;
+	}
+}
+
+void removeHeadOfList(chessPosList* lst) {/*behead*/
+	chessPosCell* temp = lst->head;
+	lst->head = lst->head->next;
+	free(temp);
+}
+
+void reverseList(chessPosList* lst) {
+
+	chessPosCell* prev, * curr, * next;
+	prev = NULL;
+	if (!isEmptyList(lst)) {
+
+		curr = lst->head;
+	
+		while (curr) {
+			next = curr->next;
+			curr->next = prev;
+			prev = curr;
+			curr = next;
+		}
+	
+		curr = lst->head;
+		lst->head = lst->tail;
+		lst->tail = curr;
+	}
+
+}
+
 void replaceTailInListPos(chessPosList* lst, chessPosCell* newTail, chessPosCell* oldTail) {
 	chessPosCell* tmp;
 	if (isEmptyList(lst)) {
@@ -108,4 +168,15 @@ void insertNodeToEndList(chessPosList* lst, chessPosCell* tail)
 		lst->tail = tail;
 	}
 	tail->next = NULL;
+}
+
+void freeListCell(chessPosList* lst) {
+	chessPosCell* temp = lst->head;
+	chessPosCell* curr = temp->next;
+	while (curr) {
+		free(temp);
+		temp = curr;
+		curr = temp->next;
+	}
+	free(temp);
 }

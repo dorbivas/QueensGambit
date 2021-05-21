@@ -6,9 +6,9 @@
 chessPosArray*** validKnightMoves() {
 
 	int rows, cols;
-	Coords CoordTable[MAX_MOVES] = { {-2 , 1},{-2 , -1},
+	Coords CoordTable[MAX_MOVES] = {{-2 , -1}, {-2 , 1},
 									 {2 , 1} , {2 , -1},
-									 {1 , 2} , {1 , -2},
+									 {1 , -2}, {1 , 2} ,
 									 {-1 , 2},{-1 , -2} };/*TODO NOTES*/
 
 	chessPosArray*** board = initiateChessBoard();
@@ -17,6 +17,7 @@ chessPosArray*** validKnightMoves() {
 		for (cols = 0; cols < BOARD_SIZE; cols++) {
 			//(board[rows][cols].size) = 0;
 			board[rows][cols]->positions = validSquareMoves(rows, cols, CoordTable, &(board[rows][cols]->size));
+			
 		}
 	}
 	return board;

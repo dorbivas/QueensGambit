@@ -7,7 +7,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define BOARD_SIZE 4
+#define BOARD_SIZE 5
 #define MAX_MOVES 8
 
 typedef char chessPos[2];
@@ -41,6 +41,8 @@ void chessPosSetter(chessPos* dest, chessPos src);
 int IntToCharNum(int num);
 int IntToCharLetter(int num);
 
+void freeChessBoard(chessPosArray*** board);
+
 /*Q2*/
 void printBoard(int boardValues[BOARD_SIZE][BOARD_SIZE]);
 void printRoofNumbers();
@@ -49,9 +51,16 @@ int charToInt(char ch);
 
 /*Q4*/
 void addNewTailToListPos(chessPosList* lst, chessPos newTailPos);
+void updateListPosTail(chessPosList* lst, chessPos newTailPos);
+void addNewHeadToListPos(chessPosList* lst, chessPos newTailPos);
+void insertNodeToStartList(chessPosList* lst, chessPosCell* newHead);
+void removeHeadOfList(chessPosList* lst);
+void reverseList(chessPosList* lst);
 void replaceTailInListPos(chessPosList* lst, chessPosCell* newTail, chessPosCell* oldTail);
 void makeEmptyList(chessPosList* lst);
 bool isEmptyList(chessPosList* lst);
 chessPosCell* createNewListNode(chessPos pos, chessPosCell* next);
 void insertNodeToEndList(chessPosList* lst, chessPosCell* tail);
+
+void freeListCell(chessPosList* lst);
 

@@ -4,14 +4,7 @@
 #include "Q2.h"
 #include "Q3.h"
 
-void main()
-{
-	//testNextKNightPos();
-	chessPos start = { 'D','1' };
-	pathTree path = findAllPossibleKnightPaths(&start);
-	printPath(path);
-	
-}
+
 /**********TODO*********/
 /*IDAN
 * nextKnightPositions - V
@@ -49,16 +42,18 @@ pathTree findAllPossibleKnightPaths(chessPos* startingPosition) {
 	chessPosArray*** validMovesBoard = validKnightMoves(); 
 	updateVisitMatrix(visitsMatrix, path.roots->position);
 	pathBuildRec(path.roots, validMovesBoard, visitsMatrix);
-
+	/*TODO add free visitMatrix,free validMovesBoard*/
 	return path;
 }
 
-	void pathBuildRec(treeNode* root, chessPosArray*** validMovesBoard, bool ** visitsMatrix) {
+void pathBuildRec(treeNode* root, chessPosArray*** validMovesBoard, bool ** visitsMatrix) {
 	treeNodeListCell* curr;
+
 	root->next_possible_positions = CreateNextPosList(visitsMatrix, nextKnightPositions(validMovesBoard, root->position));
 	curr = root->next_possible_positions;
 
 	while (curr != NULL) {
+
 		updateVisitMatrix(visitsMatrix, curr->node->position);
 		//printf("[%c%c] -->", (root->position)[0], (root->position)[1]);
 		pathBuildRec(curr->node, validMovesBoard, visitsMatrix);
@@ -98,11 +93,8 @@ bool isVisited(bool** visitsMatrix, chessPos pos) {
 	return (visitsMatrix)[charToInt(pos[0])][charToInt(pos[1])];
 }
 
-chessPosArray nextKnightPositions(chessPosArray*** validMovesBoard, chessPos currPos) {
+chessPosArray nextKnightPositions(chessPosArray*** validMovesBoard, chessPos currPos) {	
 	return *validMovesBoard[charToInt(currPos[0])][charToInt(currPos[1])];
-	//return  *(*(*(validMovesBoard)+charToInt(currPos[0]))+charToInt(currPos[1]));
-
-	//return  *(validMovesBoard)[charToInt(currPos[0])][charToInt(currPos[1])];
 }
 
 void updateVisitMatrix(bool** visitsMatrix, chessPos pos) {
@@ -164,3 +156,26 @@ treeNodeListCell* CreateListCellnotvoid(chessPos pos) {
 	//*head->node->position = pos;
 	return head;
 }
+
+
+void freePath(pathTree* path) {
+	int cntr = 0;
+	if (path->roots->next_possible_positions) {
+		freePathRec(path->roots->next_possible_positions, &cntr);
+		free(path->roots);
+	}
+}
+
+void freePathRec(treeNodeListCell* cell,int* cntr) {
+	(*cntr)++;
+	
+	 {
+		if (cell->next)
+			freePathRec(cell->next, cntr);
+		if (cell->node->next_possible_positions)
+			freePathRec(cell->node->next_possible_positions, cntr);
+		free(cell->node);
+		free(cell);
+	}
+}
+

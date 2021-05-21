@@ -22,6 +22,19 @@ Name - date (dd/mm/yy hh:mm)
 ****************************************************************************
 list between the * rows all the changes
 ****************************************************************************
+Idan 21/05/21 17:00
+****************************************************************************
+1) Massive changes!!!
+
+2) Q3 and Q4 works comletely.
+
+3) changed Q1 add create valid moves board for quick path finding in Q4
+
+4) added main.c file for testing and integrations.
+
+5) added free for all the structures in the code. 
+****************************************************************************
+
 
 Idan 15/05/21 20:23
 ****************************************************************************
