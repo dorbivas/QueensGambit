@@ -23,6 +23,20 @@ Name - date (dd/mm/yy hh:mm)
 list between the * rows all the changes
 ****************************************************************************
 
+Dor 24/05/21 21:41
+****************************************************************************
+1) Q4.h - findKnightPathCoveringAllBoardRec removed.. ("rec" replace it)
+
+2) Q7.c added menu Q1-4 covered in 
+
+3) handeling minors TODO's
+
+4) much TODO's left inside Q7
+****************************************************************************
+
+
+
+
 Dor 21/05/21 17:18
 ****************************************************************************
 1) Massive Load of changes!!! /*TODO CHANGE*/
