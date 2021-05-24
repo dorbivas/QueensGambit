@@ -27,7 +27,7 @@ void menu()
 		printf("3.\tFind a knight path covering all board. \n");
 		printf("4.\tSave knight path covering all board to file. \n");
 		printf("5.\tLoad and display path from file. \n");
-		printf("6.\tExit. \n");
+		printf("6.\tExit. \n"); 
 		scanf("%d", &userChoice);
 
 		switch (userChoice) {
