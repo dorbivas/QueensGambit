@@ -37,7 +37,7 @@ void menu()
 			break;
 
 		case 2:
-			userPath = option2(userPos);
+			userPath = findAllPossibleKnightPaths(&userPos);/*TODO check if works 100%*/
 			break;
 
 		case 3:
@@ -67,10 +67,4 @@ void menu()
 		freeListCell(fullPath);
 	}
 	/*TODO free fullPath*/
-}
-pathTree option2(chessPos pos) {
-	pathTree path;
-	chessPosList* fullPath;
-	path = findAllPossibleKnightPaths(&pos);
-	return path;
 }
