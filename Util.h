@@ -8,7 +8,7 @@
 #include <stdbool.h>
 
 #define BOARD_SIZE 5
-#define MAX_MOVES 8
+#define MAX_MOVES 25
 
 typedef char chessPos[2];
 
@@ -63,4 +63,7 @@ chessPosCell* createNewListNode(chessPos pos, chessPosCell* next);
 void insertNodeToEndList(chessPosList* lst, chessPosCell* tail);
 
 void freeListCell(chessPosList* lst);
+
+/*Q7*/
+bool isValidInput(char pos1, char pos2);
 

@@ -177,3 +177,8 @@ void freeListCell(chessPosList* lst) {
 	}
 	free(temp);
 }
+
+/*Q7 util*/
+bool isValidInput(char pos1, char pos2) {
+	return(pos1 >= 'A' && pos1 <= 'E' && pos2 >= '1' && pos2 <= '8');
+}

@@ -32,6 +32,7 @@
     <ClInclude Include="Q2.h" />
     <ClInclude Include="Q3.h" />
     <ClInclude Include="Q4.h" />
+    <ClInclude Include="Q7.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>

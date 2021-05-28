@@ -3,13 +3,15 @@
 #include "Q2.h"
 #include "Q3.h"
 #include "Q4.h"
+#include "Q7.h" /*TODO CHANGE*/
 
 void testQ4();
 void test();
 
 void main() {
+	menu();
 	//testQ4();
-	test();
+	//test();
 }
 
 void test() {
@@ -17,14 +19,14 @@ void test() {
 	chessPos pos = { 'E','3' };
 	pathTree path;
 	chessPosList* fullPath;
-			path = findAllPossibleKnightPaths(&pos);
-			fullPath = findKnightPathCoveringAllBoard(&path);
+	path = findAllPossibleKnightPaths(&pos);
+	fullPath = findKnightPathCoveringAllBoard(&path);
 
-			freePath(&path);
-			if (fullPath) {
-				display(fullPath);
-				freeListCell(fullPath);
-			}
+	freePath(&path);
+	if (fullPath) {
+		display(fullPath);
+		freeListCell(fullPath);
+	}
 }
 
 void testQ4() {
