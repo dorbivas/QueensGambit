@@ -64,6 +64,9 @@ void insertNodeToEndList(chessPosList* lst, chessPosCell* tail);
 
 void freeListCell(chessPosList* lst);
 
+/*Q5*/
+void checkFileOpen(FILE* fp, char* msg);
+
 /*Q7*/
 bool isValidInput(char pos1, char pos2);
 

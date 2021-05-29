@@ -32,7 +32,7 @@ void menu()
 		case 1:
 			do
 			{
-				printf("Please enter valid params: <A-E> <1-8> : ");
+				printf("Please enter valid params: <A-H> <1-8> : ");
 				getchar();
 				scanf("%c %c", &userPos[0], &userPos[1]);
 			} while (!isValidInput(userPos[0], userPos[1]));

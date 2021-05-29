@@ -178,6 +178,13 @@ void freeListCell(chessPosList* lst) {
 	free(temp);
 }
 
+/*Q5 util*/
+void checkFileOpen(FILE* fp, char* msg){
+	if (!fp){
+		fprintf(stderr, "Error opening file: %s\n", msg);
+		exit(1);
+	}
+}
 /*Q7 util*/
 bool isValidInput(char pos1, char pos2) {
 	return(pos1 >= 'A' && pos1 <= 'E' && pos2 >= '1' && pos2 <= '8');

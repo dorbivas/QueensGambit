@@ -7,28 +7,54 @@
 #include "Q7.h" /*TODO CHANGE*/
 
 void testQ4();
-void test();
+chessPosList* createListTest();
+
+void test5();
 
 void main() {
 
+	test5();
 	//menu();
 	//testQ4();
 	//test();
 }
 
-void test() {
-	
-	chessPos pos = { 'E','3' };
-	pathTree path;
-	chessPosList* fullPath;
-	path = findAllPossibleKnightPaths(&pos);
-	fullPath = findKnightPathCoveringAllBoard(&path);
+chessPosList* createListTest() {
+	chessPosList* testList = (chessPosList*)malloc(sizeof(chessPosList));
+	makeEmptyList(testList);
+	chessPosCell *a1, * a2, * a3, * a4, * a5;
+	a1 = Initiate((chessPos) { 'E', '3' });
+	a2 = Initiate((chessPos) { 'C', '4' });
+	a3 = Initiate((chessPos) { 'A', '3' });
+	a4 = Initiate((chessPos) { 'B', '1' });
+	a5 = Initiate((chessPos) { 'D', '2' });
 
-	freePath(&path);
-	if (fullPath) {
-		display(fullPath);
-		freeListCell(fullPath);
-	}
+	a1->next = a2;
+	a2->next = a3;
+	a3->next = a4;
+	a4->next = a5;
+
+	testList->head = a1;
+	testList->tail = a5;
+	return testList;
+}
+
+void test5() {
+	
+	//chessPos pos = { 'E','3' };
+	//pathTree path;
+	//chessPosList* fullPath;
+	//path = findAllPossibleKnightPaths(&pos);
+	//fullPath = findKnightPathCoveringAllBoard(&path);
+	chessPosList* testList = createListTest();
+
+	saveListBinFile("testQ5.bin", testList);
+
+	//freePath(&path);
+	//if (fullPath) {
+	//	display(fullPath);
+	//	freeListCell(fullPath);
+	//}
 }
 
 void testQ4() {
