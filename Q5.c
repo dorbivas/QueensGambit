@@ -77,17 +77,18 @@ void insertBytes(chessPosCell** curr, short amount, FILE* fp) {
 	fwrite(b, sizeof(Byte), amount, fp);
 	fflush(fp);
 
-	fseek(fp, 0, SEEK_END);
+	/*TEST*///TODO
+	/*fseek(fp, 0, SEEK_END);
 	int fileSize = ftell(fp);
 	rewind(fp);
 	Byte tmp;
 
 	short tmp1;
-	printf("%d", fread(&tmp1, sizeof(short), 1, fp));
+	printf("%X", fread(&tmp1, sizeof(short), 1, fp));
 	for (int i = 0; ftell(fp) < fileSize; i++) 
 		printf("%x", fread(&tmp, sizeof(Byte), 1, fp));
 
-	free(b);
+	free(b);*/
 }
 
 void init2PosBytes(Byte* b) {

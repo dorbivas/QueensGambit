@@ -12,8 +12,15 @@ TODO's: Idan Gay
 
 General:
     must add Free functions for all the allocations (!!!)
-Q3:
-    IT WORKS!!!
+Q1:
+    Check why the fuck int to char functions are int(!!!)?
+
+Q5: 
+    Integrate with Q7
+
+Q6:
+    Check the read from file function 
+    Must add a better documitaions for the loop flow
 
 /////////////////////////////////////////////////////////////////////////////
 CHANGES:
@@ -23,6 +30,18 @@ Name - date (dd/mm/yy hh:mm)
 list between the * rows all the changes
 ****************************************************************************
 
+Idan + Dor 29/05/21 23:15
+****************************************************************************
+1) finished Q5 but better testing results will come after Q6 is finished
+
+2) Q6 finished read from file alogirism although testing wasn't performed
+
+3) Q6.h and Q6.c were added
+
+4) Work around is still needed, mostly for small TODO tasks
+****************************************************************************
+
+
 Dor 28/05/21 17:41
 ****************************************************************************
 1) Q7 improvments displaying path and looping the menu
@@ -30,8 +49,8 @@ Dor 28/05/21 17:41
 2) Q7.h added
 
 3) util.c isValidInput added
-
 ****************************************************************************
+
 
 Dor 24/05/21 21:41
 ****************************************************************************
@@ -73,13 +92,21 @@ Idan 21/05/21 17:00
 ****************************************************************************
 
 
+Dor 15/05/21 20:58
+****************************************************************************
+1) Making Q4 sol ,adding Q4.h
+
+2) adding Q4 utilty to Util.c/h /
+****************************************************************************
+
+
 Idan 15/05/21 20:23
 ****************************************************************************
 1) In Q3, switched all the visitMatrix signatures from (***) to (**) due to an error in isVisited
 
 2) Added chessPosSetter in Utill.c for easy and secure setting
 
-3) Fixed a bug where next in ListCell was nnot defined correctly (_treeNodeListcell instead of _treeNodeListCell)
+3) Fixed a bug where next in ListCell was not defined correctly (_treeNodeListcell instead of _treeNodeListCell)
 
 4) Finished Q3 testing
 ****************************************************************************
@@ -103,10 +130,4 @@ minor changes:
 2)moved all Q3.c functions to Q3.h
 *****************************************************************************
 
-Dor 15/05/21 20:58
-****************************************************************************
-1) Making Q4 sol ,adding Q4.h
 
-2) adding Q4 utilty to Util.c/h /
-
-****************************************************************************
