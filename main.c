@@ -3,13 +3,15 @@
 #include "Q2.h"
 #include "Q3.h"
 #include "Q4.h"
+#include "Q5.h"
 #include "Q7.h" /*TODO CHANGE*/
 
 void testQ4();
 void test();
 
 void main() {
-	menu();
+
+	//menu();
 	//testQ4();
 	//test();
 }
