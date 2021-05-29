@@ -25,6 +25,7 @@
     <ClCompile Include="Q3.c" />
     <ClCompile Include="Q4.c" />
     <ClCompile Include="Q7.c" />
+    <ClCompile Include="Q5.c" />
     <ClCompile Include="Util.c" />
   </ItemGroup>
   <ItemGroup>
@@ -32,6 +33,7 @@
     <ClInclude Include="Q2.h" />
     <ClInclude Include="Q3.h" />
     <ClInclude Include="Q4.h" />
+    <ClInclude Include="Q5.h" />
     <ClInclude Include="Q7.h" />
     <ClInclude Include="Util.h" />
   </ItemGroup>
