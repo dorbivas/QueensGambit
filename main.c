@@ -13,8 +13,8 @@ void test5();
 
 void main() {
 
+	menu();
 	test5();
-	//menu();
 	//testQ4();
 	//test();
 }

@@ -1,7 +1,26 @@
 #include "Q6.h"
 
+
 int checkAndDisplayPathFromFile(char* file_name) {
+    int size, res = 3; /*any other case*/
+    chessPosList* fileList;
     FILE* fp = fopen(file_name, "rb");
+
+    if (!fp) {
+        fprintf(stderr, "Error opening file: %s\n", file_name); 
+        return -1; /*incase there is no file*/
+    }
+
+    fileList = createListFromFile(fp, &size);
+    /*removeExcessCells(fileList)*/
+    /*TODO removeExcessCells(fileList) did we remove the excass  already??*/
+    if (listSize(fileList->head) != BOARD_SIZE * BOARD_SIZE) /*TODO check + 1 / -1 */
+        return 1;
+    else {
+        res = 2; /* found valid path */
+        display(fileList);
+    }
+    return res;
 }
 
 chessPosList* createListFromFile(FILE* fp, int* size) {
@@ -18,7 +37,6 @@ chessPosList* createListFromFile(FILE* fp, int* size) {
     checkAlloc(fileList, "failed to allocate list from file");
     makeEmptyList(fileList);
 
-
     fseek(fp, 0, SEEK_END);
     fileSize = ftell(fp);
     rewind(fp);
@@ -34,6 +52,7 @@ chessPosList* createListFromFile(FILE* fp, int* size) {
     100,000,00
     00000100
     */
+
     Byte masks[10] = { 0b11100000, 0b00011100,
                        0b00000011, 0b10000000, 0b01110000,
                        0b00001110, 0b00000001, 0b11000000,
@@ -89,6 +108,7 @@ chessPosList* createListFromFile(FILE* fp, int* size) {
         if (maskCounter == 1 || maskCounter == 4 || maskCounter == 7 || maskCounter == 9)
             addNewTailToListPos(fileList, Initiate((pos))); 
     }
+    *size = i;
 
     return fileList;
 }
