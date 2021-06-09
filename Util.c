@@ -5,7 +5,7 @@
 /*Q1 util*/
 /*TODO CHANGE INT TO CHAR SIGNATURE*/
 int IntToCharNum(int num) {
-	return '1' + num;
+		return '1' + num;
 }
 int IntToCharLetter(int num) {
 	return 'A' + num;
@@ -177,6 +177,7 @@ void freeListCell(chessPosList* lst) {
 		curr = temp->next;
 	}
 	free(temp);
+	free(lst);
 }
 
 /*Q5 util*/
@@ -188,5 +189,5 @@ void checkFileOpen(FILE* fp, char* msg){
 }
 /*Q7 util*/
 bool isValidInput(char pos1, char pos2) {
-	return(pos1 >= 'A' && pos1 <= 'E' && pos2 >= '1' && pos2 <= '8');
+	return(pos1 >= 'A' && pos1 <= 'E' && pos2 >= '1' && pos2 <= '5');
 }

@@ -4,17 +4,20 @@
 #include "Q3.h"
 #include "Q4.h"
 #include "Q5.h"
+#include "Q6.h"
 #include "Q7.h" /*TODO CHANGE*/
 
 void testQ4();
+void testQ6();
 chessPosList* createListTest();
 
 void test5();
 
 void main() {
 
-	menu();
+	//menu();
 	test5();
+	testQ6();
 	//testQ4();
 	//test();
 }
@@ -23,11 +26,11 @@ chessPosList* createListTest() {
 	chessPosList* testList = (chessPosList*)malloc(sizeof(chessPosList));
 	makeEmptyList(testList);
 	chessPosCell *a1, * a2, * a3, * a4, * a5;
-	a1 = Initiate((chessPos) { 'E', '3' });
-	a2 = Initiate((chessPos) { 'C', '4' });
-	a3 = Initiate((chessPos) { 'A', '3' });
-	a4 = Initiate((chessPos) { 'B', '1' });
-	a5 = Initiate((chessPos) { 'D', '2' });
+	a1 = Initiate((chessPos) { 'A', '1' });
+	a2 = Initiate((chessPos) { 'C', '2' });
+	a3 = Initiate((chessPos) { 'B', '4' });
+	a4 = Initiate((chessPos) { 'D', '3' });
+	a5 = Initiate((chessPos) { 'E', '5' });
 
 	a1->next = a2;
 	a2->next = a3;
@@ -82,4 +85,8 @@ void testQ4() {
 		}
 	}
 	printBoard(testBoard);
+}
+
+void testQ6() {
+	checkAndDisplayPathFromFile("testQ5.bin");
 }

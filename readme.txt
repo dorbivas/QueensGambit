@@ -11,16 +11,13 @@ DECRIPTION:
 TODO's: Idan Gay
 
 General:
-    must add Free functions for all the allocations (!!!)
-Q1:
-    Check why the fuck int to char functions are int(!!!)?
+    FINISH HIM
+    
+    Q7:
+        Add Q5 and Q6 to the pool and run the tests
 
-Q5: 
-    Integrate with Q7
-
-Q6:
-    Check the read from file function 
-    Must add a better documitaions for the loop flow
+    readme:
+        write a readme file for the
 
 /////////////////////////////////////////////////////////////////////////////
 CHANGES:
@@ -29,6 +26,15 @@ Name - date (dd/mm/yy hh:mm)
 ****************************************************************************
 list between the * rows all the changes
 ****************************************************************************
+
+Idan 09/06/21 21:00
+****************************************************************************
+1) Q6 is checked the work has done
+
+2) Q5 and Q6 needs to be added to Q7 switch case
+
+****************************************************************************
+
 
 Idan + Dor 29/05/21 23:15
 ****************************************************************************

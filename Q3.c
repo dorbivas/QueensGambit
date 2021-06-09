@@ -153,7 +153,7 @@ treeNodeListCell* CreateListCellnotvoid(chessPos pos) {
 }
 
 
-void freePath(pathTree* path) {/*TODO dfuq is cntr bad name practice */
+void freePath(pathTree* path) {
 	int cntr = 0;
 	if (path->roots->next_possible_positions) {
 		freePathRec(path->roots->next_possible_positions, &cntr);
@@ -161,7 +161,7 @@ void freePath(pathTree* path) {/*TODO dfuq is cntr bad name practice */
 	}
 }
 
-void freePathRec(treeNodeListCell* cell,int* cntr) {/*TODO dfuq is cntr bad name practice */
+void freePathRec(treeNodeListCell* cell,int* cntr) {
 	(*cntr)++;
 	
 	 {

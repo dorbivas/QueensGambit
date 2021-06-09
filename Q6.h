@@ -5,3 +5,5 @@
 
 
 int checkAndDisplayPathFromFile(char* file_name);
+
+chessPosList* createListFromFile(FILE* fp, int* size);

@@ -3,13 +3,14 @@
 #pragma once
 #include "Q7.h"
 
-void menu()
-{
+void menu() {
+
 	int userChoice;
 	chessPos userPos;
 	pathTree userPath;
 	chessPosList* fullPath ;
 	//makeEmptyList(fullPath); /*TODO*/
+	userPos[0] = userPos[1] = NOT_DEFINED;
 	userPath.roots = NULL; 
 
 	/*TODO Q5 Q6*/
@@ -30,8 +31,7 @@ void menu()
 
 		switch (userChoice) {
 		case 1:
-			do
-			{
+			do {
 				printf("Please enter valid params: <A-H> <1-8> : ");
 				getchar();
 				scanf("%c %c", &userPos[0], &userPos[1]);
@@ -40,46 +40,48 @@ void menu()
 			break;
 
 		case 2:
-			userPath = findAllPossibleKnightPaths(&userPos);/*TODO check if works 100%*/
-			printf("\ndone bulding userPath\n");
+			if (userPos[0] != NOT_DEFINED) {
+				userPath = findAllPossibleKnightPaths(&userPos);/*TODO check if works 100%*/
+				printf("\ndone bulding userPath\n");
+			}
+			else
+				printf("please enter a starting knight position before choosing this option\n");
 			break;
 
 		case 3:
-			if (userPath.roots)	{
+			
+			if (userPos[0] != NOT_DEFINED) {
+				if (!userPath.roots)
+					userPath = findAllPossibleKnightPaths(&userPos);/*TODO check if works 100%*/
+
 				fullPath = findKnightPathCoveringAllBoard(&userPath); /*TODO check if works 100%*/
+				freePath(&userPath);
 				printf("\ndone bulding fullPath\n");
-				if (fullPath) {
-					display(fullPath);
-					//Sleep(1000); /*TODO*/
-				}
-				else
-					printf("\nfking empty bish\n"); /*TODO CHANGE*/
 			}
 			else
-				printf("\nPlease build a path before.\n");
+				printf("please enter a starting knight position before choosing this option\n");
 			break;
 
 		case 4:
-			/*TODO Q5*/
+			if (userPos[0] != NOT_DEFINED) {
+				saveListBinFile("testQ5.bin", fullPath);
+				freeListCell(fullPath);
+			}
+			else
+				printf("please enter a starting knight position before choosing this option\n");
 			break;
 		case 5:
-			/*TODO Q6*/
+			checkAndDisplayPathFromFile("testQ5.bin");
 			break;
 		case 6:
 			printf("GoodBye..");
-			exit(0); /*TODO exit?*/
+			exit(0); 
 
 		default:
-			printf("Please choose number between 1-6 ya bish\n"); /*TODO ya bish*/
+			printf("Please choose number between 1-6\n"); 
 			break;
 		}
+	} while (userChoice != 6); 
 
-	} while (userChoice != 6); /*TODO while true coz case 6 takes us out*/
 
-	//freePath(&userPath);
-	//if (fullPath) {
-	//	display(fullPath); /*TODO change*/
-	//	freeListCell(fullPath);
-	//}
-	/*TODO free fullPath*/
 }

@@ -39,8 +39,6 @@ void saveListBinFile(char* file_name, chessPosList* pos_list) {
 
 short listSize(chessPosCell* curr) {
 	short res = 0;
-	//for (curr; curr; curr->next, res++); /*TODO*/
-	//
 	while (curr) {
 		curr = curr->next;
 		res++;
@@ -76,19 +74,6 @@ void insertBytes(chessPosCell** curr, short amount, FILE* fp) {
 	}
 	fwrite(b, sizeof(Byte), amount, fp);
 	fflush(fp);
-
-	/*TEST*///TODO
-	/*fseek(fp, 0, SEEK_END);
-	int fileSize = ftell(fp);
-	rewind(fp);
-	Byte tmp;
-
-	short tmp1;
-	printf("%X", fread(&tmp1, sizeof(short), 1, fp));
-	for (int i = 0; ftell(fp) < fileSize; i++) 
-		printf("%x", fread(&tmp, sizeof(Byte), 1, fp));
-
-	free(b);*/
 }
 
 void init2PosBytes(Byte* b) {

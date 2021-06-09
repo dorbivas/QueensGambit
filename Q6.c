@@ -12,14 +12,14 @@ int checkAndDisplayPathFromFile(char* file_name) {
     }
 
     fileList = createListFromFile(fp, &size);
-    /*removeExcessCells(fileList)*/
-    /*TODO removeExcessCells(fileList) did we remove the excass  already??*/
-    if (listSize(fileList->head) != BOARD_SIZE * BOARD_SIZE) /*TODO check + 1 / -1 */
+ 
+    if (listSize(fileList->head) != BOARD_SIZE * BOARD_SIZE)
         return 1;
     else {
         res = 2; /* found valid path */
         display(fileList);
     }
+    fclose(fp);
     return res;
 }
 
@@ -61,13 +61,14 @@ chessPosList* createListFromFile(FILE* fp, int* size) {
                             0,7,4,
                             1,0,6,
                             3,0 };
+    /*jumps to the start of the list*/
     fread(&listSize, sizeof(short), 1, fp);
     currFileCorsur = ftell(fp);
 
-    for (i = 0,maskCounter = 0; ftell(fp) < fileSize; i++, maskCounter++) {
+    for (i = 0, maskCounter = 0; i < (int)listSize; maskCounter++) {
         if (maskCounter == 10)
             maskCounter = 0;
-        if(maskCounter == 0 || maskCounter == 8)
+        if(maskCounter == 0)
             fread(&reader, sizeof(Byte), 1, fp);
 
         if (maskCounter <= 1 || maskCounter >= 8) {
@@ -87,13 +88,13 @@ chessPosList* createListFromFile(FILE* fp, int* size) {
                 fread(&reader, sizeof(Byte), 1, fp);
 
                 lastByte = (lastByte & masks[maskCounter])<< 1;
-                /*TODO pls explain WHAT THE FUCK IS GONING OVER HEREEEEEE?!?!?!?!*/
+               
                 pos[0] = IntToCharLetter((int)(lastByte | ((reader & masks[++maskCounter]) >> shiftByMask[maskCounter++]))); /*shiftByMask supposed to be 7*/
                 pos[1] = IntToCharNum((int)((reader & masks[maskCounter]) >> shiftByMask[maskCounter]));
             }
 
             if (maskCounter == 5) {
-                /*TODO pls explain WHAT THE FUCK IS GONING OVER HEREEEEEE?!?!?!?!*/
+                
                 pos[0] = IntToCharLetter((int)((reader & masks[maskCounter]) >> shiftByMask[maskCounter++]));
 
                 lastByte = reader;  
@@ -105,11 +106,30 @@ chessPosList* createListFromFile(FILE* fp, int* size) {
                    lastByte | reader = 0000 0bbb */
             }
         }
-        if (maskCounter == 1 || maskCounter == 4 || maskCounter == 7 || maskCounter == 9)
+        if (maskCounter == 1 || maskCounter == 4 || maskCounter == 7 || maskCounter == 9) {
             addNewTailToListPos(fileList, Initiate((pos))); 
+            i++;
+        }
     }
     *size = i;
 
     return fileList;
 }
 
+bool checkValidKnightPath(chessPosList* lst) {
+    chessPosCell* prev,* curr;
+    prev = lst->head;
+    curr = prev->next;
+    
+    bool flag = true;
+
+    for (prev, curr; curr != NULL && flag; curr = curr->next, prev = prev->next) {
+
+    }
+}
+
+bool validSingleMove(chessPos a, chessPos b) {
+    int letterDistance = a[0] - b[0];
+    int NumberDistance = a[1] - b[1];
+
+}

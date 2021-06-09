@@ -7,10 +7,10 @@ chessPosArray*** validKnightMoves() {
 
 	int rows, cols;
 	/*Table for knight possiable positions from coord : (0,0) , 8 options around */
-	Coords CoordTable[MAX_MOVES] = {{-2 , -1}, {-2 , 1},
-									 {2 , 1} , {2 , -1},
-									 {1 , -2}, {1 , 2} ,
-									 {-1 , 2},{-1 , -2} };
+	Coords CoordTable[8] =	{{-2 , -1}, {-2 , 1},
+							 {2 , 1} , {2 , -1},
+							 {1 , -2}, {1 , 2} ,
+							 {-1 , 2},{-1 , -2} };
 
 	chessPosArray*** board = initiateChessBoard();
 
