@@ -1,4 +1,4 @@
-/*Dor And the Mighty Idan Q4 Bitch*/
+/*QueensGambit Q4 */
 
 #define _CRT_SECURE_NO_WARNINGS
 #include "Q1.h"
@@ -16,32 +16,28 @@ chessPosList* findKnightPathCoveringAllBoard(pathTree* path_tree){
 	loopCntr = 0;
 	makeEmptyList(resList);
 	addNewTailToListPos(resList, path_tree->roots->position);
-
-	//findKnightPathCoveringAllBoardRec(root, curr, &res , &lvls);
-	rec(curr, &resList, &lvls, &loopCntr);
+	finedFullPathRec(curr, &resList, &lvls);
 	reverseList(resList);
+
 	if (lvls == MAX_STEPS)
 		return resList;
 	return NULL; /*incase thers no path that covers the board*/
-
 }
 
-
-/*lvls == 1 at the start lst has one node*/
-void rec(treeNodeListCell* currListHead, chessPosList** lstPtr, int* lvls, int* recCntr) {
-	(*recCntr)++;
+/*lvls == 1 at the start lst has one node, lvl is the rank in the tree*/
+void finedFullPathRec(treeNodeListCell* currListHead, chessPosList** lstPtr, int* lvls) {
 	if (*lvls < MAX_STEPS && currListHead) {
 		if (currListHead->node) {
 			(*lvls)++;
 			addNewHeadToListPos(*lstPtr, currListHead->node->position);
-			rec(currListHead->node->next_possible_positions, lstPtr, lvls, recCntr);
+			finedFullPathRec(currListHead->node->next_possible_positions, lstPtr, lvls);
 		}
 
 		if (*lvls < MAX_STEPS) {
 			removeHeadOfList(*lstPtr);
-			(*lvls)--;
+			(*lvls)--; /*last head pos failed going up*/
 			if (currListHead->next) {
-				rec(currListHead->next, lstPtr, lvls, recCntr);
+				finedFullPathRec(currListHead->next, lstPtr, lvls);
 			}
 		}
 	}

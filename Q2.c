@@ -1,4 +1,4 @@
-/*Dor And the Mighty Idan Q2 Bitch*/
+/*QueensGambit Q2 */
 #define _CRT_SECURE_NO_WARNINGS
 #include "Q2.h"
 
@@ -31,51 +31,39 @@
 /*Q2*/
 void display(chessPosList* lst) {
 	int i, j;
-	int boardValues[BOARD_SIZE][BOARD_SIZE];/* = {
-						{0,0,0,0,0,0,0,0},
-						{0,0,0,0,0,0,0,0},
-						{0,0,0,0,0,0,0,0},
-						{0,0,0,0,0,0,0,0},
-						{0,0,0,0,0,0,0,0},
-						{0,0,0,0,0,0,0,0},
-						{0,0,0,0,0,0,0,0},
-						{0,0,0,0,0,0,0,0},  }; holds the cells that already appeared TODO*/
-	for (i = 0; i < BOARD_SIZE; i++)
-		for (j = 0; j < BOARD_SIZE; j++)
-			boardValues[i][j] = 0;
+	int** boardValues = createBoard();
 
 	removeExcessCells(lst, boardValues);
 	printBoard(boardValues);
+	freeBoard(boardValues);
 }
 
-void removeExcessCells(chessPosList* lst, int boardValues[BOARD_SIZE][BOARD_SIZE]) {
+void removeExcessCells(chessPosList* lst, int** boardValues) {
 	int cellsLocation = 1; /*holds the the location appearnce of a cell in the list*/
 	chessPosCell* curr, * prev, * tmp;
 
 	curr = prev = lst->head;
 
 	while (curr != NULL) {
-		if (checkApearence(boardValues, curr->position)){
+		if (checkApearence(boardValues, curr->position)) {
 			/*updates the bucket to its order appearnce (true) and advance the counter*/
-			boardValues[charToInt(curr->position[0])][charToInt(curr->position[1])] = cellsLocation++;
+			boardValues[charToChessValue(curr->position[0])][charToChessValue(curr->position[1])] = cellsLocation++;
 			prev = curr;
 			curr = curr->next;
 		}
-		else{
+		else {
 			tmp = curr->next;
 			removeSingleCell(prev, lst);
 			curr = tmp;
 		}
 	}
-
 }
 
-bool checkApearence(int boardValues[BOARD_SIZE][BOARD_SIZE], chessPos pos) {
-	return ((boardValues[charToInt(pos[0])][charToInt(pos[1])]) == 0);
+bool checkApearence(int** boardValues, chessPos pos) {
+	return ((boardValues[charToChessValue(pos[0])][charToChessValue(pos[1])]) == 0);
 }
 
-void removeSingleCell(chessPosCell* prevCell, chessPosList* list) { 
-
+void removeSingleCell(chessPosCell* prevCell, chessPosList* list) {
 	chessPosCell* curr = prevCell->next;
 
 	prevCell->next = curr->next;
@@ -85,8 +73,7 @@ void removeSingleCell(chessPosCell* prevCell, chessPosList* list) {
 	free(curr);
 }
 
-/*Checking functions*/ /*TODO: check funcs on util?*/
-/*Q2*/
+
 chessPosCell* Initiate(chessPos data)
 {
 	chessPosCell* newCell = (chessPosCell*)malloc(sizeof(chessPosCell));
@@ -110,4 +97,22 @@ void printList(chessPosList* lst)
 		curr = curr->next;
 	}
 	printf("\n");
+}
+
+int** createBoard() {
+	int i;
+	int** boardValues = (int**)calloc(BOARD_SIZE, sizeof(int*));
+	checkAlloc(boardValues, "failed to allocate values board");
+	for (i = 0; i < BOARD_SIZE; i++) {
+		boardValues[i] = (int*)calloc(BOARD_SIZE, sizeof(int));
+		checkAlloc(boardValues[i], "failed to allocate values board row");
+	}
+	return boardValues;
+}
+
+void freeBoard(int** boardValues) {
+	int i;
+	for (i = 0; i < BOARD_SIZE; i++)
+		free(boardValues[i]);
+	free(boardValues);
 }

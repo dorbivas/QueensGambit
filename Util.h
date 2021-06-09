@@ -1,4 +1,4 @@
-/*Dor And the Mighty Idan Util Lib Bitch */
+/*QueensGambit Utilty */
 #define _CRT_SECURE_NO_WARNINGS
 
 #pragma once
@@ -47,7 +47,7 @@ void freeChessBoard(chessPosArray*** board);
 void printBoard(int boardValues[BOARD_SIZE][BOARD_SIZE]);
 void printRoofNumbers();
 bool comparePos(chessPos a, int row, int col);
-int charToInt(char ch);
+int charToChessValue(char ch);
 
 /*Q4*/
 void addNewTailToListPos(chessPosList* lst, chessPos newTailPos);
@@ -69,4 +69,6 @@ void checkFileOpen(FILE* fp, char* msg);
 
 /*Q7*/
 bool isValidInput(char pos1, char pos2);
+void getFileNmae(char* filename);
+char* getString();
 

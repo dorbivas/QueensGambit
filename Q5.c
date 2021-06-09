@@ -1,18 +1,19 @@
-
-/*Dor And the Mighty Idan Q4 Bitch*/
+/*QueensGambit Q5 */
 
 #define _CRT_SECURE_NO_WARNINGS
 #include "Q5.h" 
 
 Byte posToByte(char pos) { /*gets only half pos and translate to bits*/
-	return (Byte)charToInt(pos);
+	return (Byte)charToChessValue(pos);
 }
 
 void saveListBinFile(char* file_name, chessPosList* pos_list) {
 	chessPosCell* curr = pos_list->head;
 	FILE* fpListOut = fopen(file_name, "wb+");
-	checkFileOpen(fpListOut, "fail to open ", file_name); /*TODO check if working name*/
-
+	if (!fpListOut) {
+		fprintf(stderr, "enter valid name followed by \".bin\" %s\n", file_name);
+		return; /*incase the name is not valid*/
+	}
 	short listLen = listSize(pos_list->head); 
 	fwrite(&listLen, sizeof(short), 1, fpListOut); /*writing the size of the list*/
 

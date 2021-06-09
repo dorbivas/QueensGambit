@@ -1,4 +1,4 @@
-/*Q3 header Bitch*/
+/*Q3 header*/
 #define _CRT_SECURE_NO_WARNINGS
 
 #pragma once
@@ -6,7 +6,6 @@
 
 typedef struct _treeNode treeNode;
 typedef struct _treeNodeListCell treeNodeListCell;
-
 
 typedef struct _treeNode {
 	chessPos position;
@@ -22,42 +21,26 @@ typedef struct _pathTree {
 	treeNode* roots;
 }pathTree;
 
-void testNextKNightPos();
-
+pathTree findAllPossibleKnightPaths(chessPos* startingPosition);
+void pathBuildRec(treeNode* root, chessPosArray*** validMovesBoard, bool ** visitsMatrix);
 void printPath(pathTree path);
-
 void printPathRec(treeNode* root);
 
-pathTree findAllPossibleKnightPaths(chessPos* startingPosition);
-
-void pathBuildRec(treeNode* root, chessPosArray*** validMovesBoard, bool ** visitsMatrix);
-
-treeNodeListCell* CreateNextPosList(bool ** visitsMatrix, chessPosArray allNextPositions);
-
-bool* peeler(bool*** visitsMatrix, chessPos pos);
-
-bool isVisited(bool ** visitsMatrix, chessPos pos);
-
-chessPosArray nextKnightPositions(chessPosArray*** validMovesBoard, chessPos* currPos);
-
+chessPosArray nextKnightPositions(chessPosArray*** validMovesBoard, chessPos currPos);
 void updateVisitMatrix(bool ** visitsMatrix, chessPos pos);
 
-bool** CreateVisitsMatrix(int size);
-
 void insertDataToHeadList(treeNodeListCell ** oldHead, chessPos pos);
-
 void insertNodeToHeadList(treeNodeListCell* newHead, treeNodeListCell ** oldHead);
 
+bool** CreateVisitsMatrix(int size);
+bool isVisited(bool** visitsMatrix, chessPos pos);
 pathTree CreatePathTree(chessPos pos);
-
-void CreateListCell(treeNodeListCell* head, chessPos pos);
-
-treeNodeListCell* CreateListCellnotvoid(chessPos pos);
+treeNodeListCell* CreateListCell(chessPos pos);
+treeNodeListCell* CreateNextPosList(bool** visitsMatrix, chessPosArray allNextPositions);
 
 void freePath(pathTree* path);
-
-void freePathRec(treeNodeListCell* cell, int* cntr);
-
+void freePathRec(treeNodeListCell* cell);
 void freeVisitsMatrix(bool** matrix);
 
-
+/*TEST funcs*/
+void testNextKNightPos();

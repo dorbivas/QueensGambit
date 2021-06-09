@@ -1,4 +1,4 @@
-/*Dor And the Mighty Idan Q7 Bitch*/
+/*QueensGambit Q7 */
 
 #pragma once
 #include "Q7.h"
@@ -8,17 +8,14 @@ void menu() {
 	int userChoice;
 	chessPos userPos;
 	pathTree userPath;
-	chessPosList* fullPath ;
-	//makeEmptyList(fullPath); /*TODO*/
+	chessPosList* fullPath = NULL;
 	userPos[0] = userPos[1] = NOT_DEFINED;
 	userPath.roots = NULL; 
-
-	/*TODO Q5 Q6*/
 	FILE* knightPath;
+	char* filename = NULL;
 
 	printf("Welcome to QueensGambit \n");
-	do
-	{
+	do	{
 		//system("cls"); /*TODO cls*/
 		printf("Choose option from the following menu: \n");
 		printf(" 1.\tEnter a knight's starting position. \n");
@@ -41,7 +38,7 @@ void menu() {
 
 		case 2:
 			if (userPos[0] != NOT_DEFINED) {
-				userPath = findAllPossibleKnightPaths(&userPos);/*TODO check if works 100%*/
+				userPath = findAllPossibleKnightPaths(&userPos);
 				printf("\ndone bulding userPath\n");
 			}
 			else
@@ -52,9 +49,9 @@ void menu() {
 			
 			if (userPos[0] != NOT_DEFINED) {
 				if (!userPath.roots)
-					userPath = findAllPossibleKnightPaths(&userPos);/*TODO check if works 100%*/
+					userPath = findAllPossibleKnightPaths(&userPos);
 
-				fullPath = findKnightPathCoveringAllBoard(&userPath); /*TODO check if works 100%*/
+				fullPath = findKnightPathCoveringAllBoard(&userPath); 
 				freePath(&userPath);
 				printf("\ndone bulding fullPath\n");
 			}
@@ -64,17 +61,22 @@ void menu() {
 
 		case 4:
 			if (userPos[0] != NOT_DEFINED) {
-				saveListBinFile("testQ5.bin", fullPath);
+				getFileNmae(filename);
+				saveListBinFile(filename, fullPath);
 				freeListCell(fullPath);
+				free(filename);
 			}
 			else
 				printf("please enter a starting knight position before choosing this option\n");
 			break;
 		case 5:
-			checkAndDisplayPathFromFile("testQ5.bin");
+			getFileNmae(filename);
+			checkAndDisplayPathFromFile(filename);
+			free(filename);
 			break;
 		case 6:
 			printf("GoodBye..");
+			/*TODO free*/
 			exit(0); 
 
 		default:
@@ -85,3 +87,5 @@ void menu() {
 
 
 }
+
+

@@ -126,7 +126,8 @@ Idan 08/05/21 16:15
 
 3) The board size is fully modular just need to change the BOARD_SIZE value in Util.h
 
-4) the void CreateListCell function was replaced with
+4) the void 
+function was replaced with
 CreateListCellnotvoid  (*we need a new name*) that returns the new List Cell
 due to error issues.
 

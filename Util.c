@@ -1,9 +1,9 @@
-/*Dor And the Mighty Idan Util Lib Bitch 315557850*/
+/*QueensGambit Utilty */
+
 #define _CRT_SECURE_NO_WARNINGS
 #include "Util.h"
 
 /*Q1 util*/
-/*TODO CHANGE INT TO CHAR SIGNATURE*/
 int IntToCharNum(int num) {
 		return '1' + num;
 }
@@ -31,7 +31,7 @@ void printRoofNumbers(){
 	printf("\n\n");
 }
 
-void printBoard(int boardValues[BOARD_SIZE][BOARD_SIZE]) {
+void printBoard(int** boardValues) {
 
 	printRoofNumbers(BOARD_SIZE);
 	for (int row = 0; row < BOARD_SIZE; row++) {
@@ -48,10 +48,10 @@ void printBoard(int boardValues[BOARD_SIZE][BOARD_SIZE]) {
 }
 
 bool comparePos(chessPos a, int row, int col) {
-	return ((charToInt(a[0]) == row) && (charToInt(a[1]) == col));
+	return ((charToChessValue(a[0]) == row) && (charToChessValue(a[1]) == col));
 }
 
-int charToInt(char ch) { /*TODO CHANGE NAME*/
+int charToChessValue(char ch) {
 	if (ch >= 'A' && ch <= 'Z')
 		return (ch - 'A');
 
@@ -190,4 +190,38 @@ void checkFileOpen(FILE* fp, char* msg){
 /*Q7 util*/
 bool isValidInput(char pos1, char pos2) {
 	return(pos1 >= 'A' && pos1 <= 'E' && pos2 >= '1' && pos2 <= '5');
+}
+
+void getFileNmae(char** filename) {
+	printf("please enter file \"name\" followed by .bin: <\"name\".bin>\n");
+	getchar();
+	*(filename) = getString();
+}
+
+char* getString() {
+	int logical_size = 0;
+	int physical_size = 1;
+	char curr_ch;
+
+	char* res = (char*)malloc(physical_size * sizeof(char));
+	checkAlloc(res, "memory allocation for str faild");
+	curr_ch = getchar();
+	while (curr_ch != '\n') {
+		if (logical_size == physical_size) {/*checks if more memory is needed*/
+			physical_size *= 2;
+			physical_size += 1;
+			res = (char*)realloc(res, physical_size * sizeof(char));
+			checkAlloc(res, "memory allocation for str faild");
+		}
+
+		res[logical_size] = curr_ch;
+		logical_size++;
+		curr_ch = getchar();
+	}
+	/*free the excess memory that is no longer neede*/
+	res = (char*)realloc(res, (logical_size + 1) * sizeof(char));
+	checkAlloc(res, "memory allocation for str faild");
+	/*add '\0' in the end of line to create a string*/
+	res[logical_size] = '\0';
+	return (res);
 }

@@ -1,4 +1,4 @@
-/*Dor And the Mighty Idan Q7 header Bitch*/
+/*Q7 header*/
 #define _CRT_SECURE_NO_WARNINGS
 
 #pragma once
@@ -9,7 +9,6 @@
 #include "Q4.h"
 #include "Q5.h"
 #include "Q6.h"
-
 #include "Util.h"
 
 #define NOT_DEFINED -1

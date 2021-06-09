@@ -1,4 +1,4 @@
-/*Dor And the Mighty Idan Q3 Bitch*/
+/*QueensGambit Q3 */
 #define _CRT_SECURE_NO_WARNINGS
 #include "Q1.h"
 #include "Q2.h"
@@ -12,12 +12,11 @@ void testNextKNightPos() {
 	ans = nextKnightPositions(validMovesBoard, pos);
 
 }
-void printPath(pathTree path)
-{
+void printPath(pathTree path){
 	printPathRec(path.roots);
 }
-void printPathRec(treeNode* root)
-{
+
+void printPathRec(treeNode* root){
 	if (root->next_possible_positions != NULL) {
 		printf("[%c%c] -->", (root->position)[0], (root->position)[1]);
 		printPathRec(root->next_possible_positions->node);
@@ -50,11 +49,11 @@ void pathBuildRec(treeNode* root, chessPosArray*** validMovesBoard, bool ** visi
 	while (curr != NULL) {
 
 		updateVisitMatrix(visitsMatrix, curr->node->position);
-		//printf("[%c%c] -->", (root->position)[0], (root->position)[1]);
+		//printf("[%c%c] -->", (root->position)[0], (root->position)[1]); for testing
 		pathBuildRec(curr->node, validMovesBoard, visitsMatrix);
 		curr = curr->next;
 	}
-	updateVisitMatrix(visitsMatrix, root->position); /*TODO */
+	updateVisitMatrix(visitsMatrix, root->position); 
 }
 
 treeNodeListCell* CreateNextPosList(bool ** visitsMatrix, chessPosArray allNextPositions) {
@@ -66,7 +65,7 @@ treeNodeListCell* CreateNextPosList(bool ** visitsMatrix, chessPosArray allNextP
 	for (i = 0; i < allNextPositions.size && !initHeadFlag; i++)
 	{
 		if (!isVisited(visitsMatrix, allNextPositions.positions[i])) {
-			head = CreateListCellnotvoid(allNextPositions.positions[i]);
+			head = CreateListCell(allNextPositions.positions[i]);
 			head->next = NULL;
 			initHeadFlag = true;
 		}
@@ -83,17 +82,16 @@ treeNodeListCell* CreateNextPosList(bool ** visitsMatrix, chessPosArray allNextP
 
 /*return if pos was visited*/
 bool isVisited(bool** visitsMatrix, chessPos pos) {
-	return (visitsMatrix)[charToInt(pos[0])][charToInt(pos[1])];
+	return (visitsMatrix)[charToChessValue(pos[0])][charToChessValue(pos[1])];
 }
 
 chessPosArray nextKnightPositions(chessPosArray*** validMovesBoard, chessPos currPos) {	
-	return *validMovesBoard[charToInt(currPos[0])][charToInt(currPos[1])];
+	return *validMovesBoard[charToChessValue(currPos[0])][charToChessValue(currPos[1])];
 }
 
 void updateVisitMatrix(bool** visitsMatrix, chessPos pos) {
 	bool tmp = isVisited(visitsMatrix, pos);
-
-	(visitsMatrix)[charToInt(pos[0])][charToInt(pos[1])] = !tmp;
+	(visitsMatrix)[charToChessValue(pos[0])][charToChessValue(pos[1])] = !tmp;
 }
 
 
@@ -104,13 +102,13 @@ bool** CreateVisitsMatrix(int size) {
 
 	for (i = 0; i < size; i++){
 		res[i] = (bool*)calloc(size, sizeof(bool)); /*all visits start on false*/
-		checkAlloc(res[i], "failed too bool a board[i]");
+		checkAlloc(res[i], "failed too bool board[i]");
 	}
 	return res;
 }
 
 void insertDataToHeadList(treeNodeListCell ** oldHead, chessPos pos){
-	treeNodeListCell* newHeadNode =	CreateListCellnotvoid(pos);
+	treeNodeListCell* newHeadNode =	CreateListCell(pos);
 	insertNodeToHeadList(newHeadNode, oldHead);
 }
 
@@ -128,19 +126,7 @@ pathTree CreatePathTree(chessPos pos) {
 	return path;
 }
 
-/*NOT IN USE*/
-void CreateListCell(treeNodeListCell* head, chessPos pos) {
-	head = (treeNodeListCell*)malloc(sizeof(treeNodeListCell));
-	checkAlloc(head, "failed growing new head to list");
-
-	head->node = (treeNode*)malloc(sizeof(treeNode));
-	checkAlloc(head->node, "failed growing root");
-
-	*head->node->position = pos;
-}
-
-/*IN USE*/
-treeNodeListCell* CreateListCellnotvoid(chessPos pos) {
+treeNodeListCell* CreateListCell(chessPos pos) {
 	treeNodeListCell* head = (treeNodeListCell*)malloc(sizeof(treeNodeListCell));
 	checkAlloc(head, "failed growing new head to list");
 
@@ -148,30 +134,24 @@ treeNodeListCell* CreateListCellnotvoid(chessPos pos) {
 	checkAlloc(head->node, "failed growing root");
 
 	chessPosSetter(&head->node->position, pos);
-	//*head->node->position = pos;
 	return head;
 }
-
 
 void freePath(pathTree* path) {
 	int cntr = 0;
 	if (path->roots->next_possible_positions) {
-		freePathRec(path->roots->next_possible_positions, &cntr);
+		freePathRec(path->roots->next_possible_positions);
 		free(path->roots);
 	}
 }
 
-void freePathRec(treeNodeListCell* cell,int* cntr) {
-	(*cntr)++;
-	
-	 {
-		if (cell->next)
-			freePathRec(cell->next, cntr);
-		if (cell->node->next_possible_positions)
-			freePathRec(cell->node->next_possible_positions, cntr);
-		free(cell->node);
-		free(cell);
-	}
+void freePathRec(treeNodeListCell* cell) {
+	if (cell->next)
+		freePathRec(cell->next);
+	if (cell->node->next_possible_positions)
+		freePathRec(cell->node->next_possible_positions);
+	free(cell->node);
+	free(cell);
 }
 
 void freeVisitsMatrix(bool** matrix) {

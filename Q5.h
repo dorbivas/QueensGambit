@@ -1,4 +1,4 @@
-/*Q5 header Bitch*/
+/*Q5 header*/
 #define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include "Util.h"

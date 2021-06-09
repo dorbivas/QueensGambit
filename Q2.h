@@ -6,10 +6,14 @@
 
 /*Q2*/
 void display(chessPosList* lst);
-void removeExcessCells(chessPosList* lst, int boardValues[BOARD_SIZE][BOARD_SIZE]);
+void removeExcessCells(chessPosList* lst, int** boardValues);
 void removeSingleCell(chessPosCell* prevCell, chessPosList* list);
-bool checkApearence(int bucket[BOARD_SIZE][BOARD_SIZE], chessPos pos);
+bool checkApearence(int** boardValues, chessPos pos);
 
 /*Checking Functions*/
 chessPosCell* Initiate(chessPos data);
 void printList(chessPosList* lst);
+
+int** createBoard();
+
+void freeBoard(int** boardValues);

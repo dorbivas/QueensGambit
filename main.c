@@ -15,9 +15,9 @@ void test5();
 
 void main() {
 
-	//menu();
-	test5();
-	testQ6();
+	menu();
+	//test5();
+	//testQ6();
 	//testQ4();
 	//test();
 }
