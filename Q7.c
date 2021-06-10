@@ -16,7 +16,6 @@ void menu() {
 
 	printf("Welcome to QueensGambit \n");
 	do	{
-		//system("cls"); /*TODO cls*/
 		printf("Choose option from the following menu: \n");
 		printf(" 1.\tEnter a knight's starting position. \n");
 		printf(" 2.\tCreate all possible knight paths. \n");
@@ -61,22 +60,24 @@ void menu() {
 
 		case 4:
 			if (userPos[0] != NOT_DEFINED) {
-				getFileNmae(filename);
+				filename = getFileName();
 				saveListBinFile(filename, fullPath);
 				freeListCell(fullPath);
+				printf("path was saved to %s\n", filename);
 				free(filename);
 			}
 			else
 				printf("please enter a starting knight position before choosing this option\n");
 			break;
 		case 5:
-			getFileNmae(filename);
+			filename = getFileName();
 			checkAndDisplayPathFromFile(filename);
 			free(filename);
+			
 			break;
 		case 6:
 			printf("GoodBye..");
-			/*TODO free*/
+			freeForAll(&userPath, fullPath, filename);
 			exit(0); 
 
 		default:
@@ -89,3 +90,11 @@ void menu() {
 }
 
 
+void freeForAll(pathTree* userPath, chessPosList* fullPath,char* filename) {
+	if((*userPath).roots->next_possible_positions)
+		freePath(userPath);
+	if(fullPath)
+		freeListCell(fullPath);
+	if(filename)
+		free(filename);
+}

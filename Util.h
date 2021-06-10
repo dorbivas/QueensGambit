@@ -69,6 +69,6 @@ void checkFileOpen(FILE* fp, char* msg);
 
 /*Q7*/
 bool isValidInput(char pos1, char pos2);
-void getFileNmae(char* filename);
+char* getFileName();
 char* getString();
 

@@ -36,6 +36,7 @@ void display(chessPosList* lst) {
 	removeExcessCells(lst, boardValues);
 	printBoard(boardValues);
 	freeBoard(boardValues);
+	return;
 }
 
 void removeExcessCells(chessPosList* lst, int** boardValues) {

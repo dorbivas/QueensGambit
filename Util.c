@@ -192,10 +192,10 @@ bool isValidInput(char pos1, char pos2) {
 	return(pos1 >= 'A' && pos1 <= 'E' && pos2 >= '1' && pos2 <= '5');
 }
 
-void getFileNmae(char** filename) {
+char* getFileName() {
 	printf("please enter file \"name\" followed by .bin: <\"name\".bin>\n");
 	getchar();
-	*(filename) = getString();
+	return getString();
 }
 
 char* getString() {
@@ -219,9 +219,9 @@ char* getString() {
 		curr_ch = getchar();
 	}
 	/*free the excess memory that is no longer neede*/
-	res = (char*)realloc(res, (logical_size + 1) * sizeof(char));
+	res = (char*)realloc(res, (logical_size+1) * sizeof(char));
 	checkAlloc(res, "memory allocation for str faild");
 	/*add '\0' in the end of line to create a string*/
 	res[logical_size] = '\0';
-	return (res);
+		return (res);
 }
