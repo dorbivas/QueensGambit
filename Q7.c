@@ -50,9 +50,12 @@ void menu() {
 				if (!userPath.roots)
 					userPath = findAllPossibleKnightPaths(&userPos);
 
-				fullPath = findKnightPathCoveringAllBoard(&userPath); 
+				fullPath = findKnightPathCoveringAllBoard(&userPath);
+				if (fullPath)
+					printf("\ndone bulding fullPath\n");
+				else
+					printf("no full path was found\n");
 				freePath(&userPath);
-				printf("\ndone bulding fullPath\n");
 			}
 			else
 				printf("please enter a starting knight position before choosing this option\n");
@@ -61,9 +64,11 @@ void menu() {
 		case 4:
 			if (userPos[0] != NOT_DEFINED) {
 				filename = getFileName();
-				saveListBinFile(filename, fullPath);
-				freeListCell(fullPath);
-				printf("path was saved to %s\n", filename);
+				if (fullPath) {
+					saveListBinFile(filename, fullPath);
+					ListCell(fullPath);
+					printf("path was saved to %s\n", filename);
+				}
 				free(filename);
 			}
 			else
