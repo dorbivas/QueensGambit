@@ -66,7 +66,7 @@ void menu() {
 				filename = getFileName();
 				if (fullPath) {
 					saveListBinFile(filename, fullPath);
-					ListCell(fullPath);
+					freeListCell(fullPath);
 					printf("path was saved to %s\n", filename);
 				}
 				free(filename);
