@@ -63,13 +63,15 @@ void menu() {
 
 		case 4:
 			if (userPos[0] != NOT_DEFINED) {
-				filename = getFileName();
 				if (fullPath) {
+					filename = getFileName();
 					saveListBinFile(filename, fullPath);
 					freeListCell(fullPath);
 					printf("path was saved to %s\n", filename);
+					free(filename);
 				}
-				free(filename);
+				else
+					printf("no path was sent\n");
 			}
 			else
 				printf("please enter a starting knight position before choosing this option\n");
