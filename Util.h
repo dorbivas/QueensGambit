@@ -33,9 +33,7 @@ typedef struct _chessPosList {
 typedef int Coords[2];
 
 void checkAlloc(void* ptr, char* msg);
-
 void chessPosSetter(chessPos* dest, chessPos src);
-
 
 /*Q1*/
 int IntToCharNum(int num);
@@ -44,7 +42,7 @@ int IntToCharLetter(int num);
 void freeChessBoard(chessPosArray*** board);
 
 /*Q2*/
-void printBoard(int boardValues[BOARD_SIZE][BOARD_SIZE]);
+void printBoard(int** boardValues);
 void printRoofNumbers();
 bool comparePos(chessPos a, int row, int col);
 int charToChessValue(char ch);
@@ -61,7 +59,6 @@ void makeEmptyList(chessPosList* lst);
 bool isEmptyList(chessPosList* lst);
 chessPosCell* createNewListNode(chessPos pos, chessPosCell* next);
 void insertNodeToEndList(chessPosList* lst, chessPosCell* tail);
-
 void freeListCell(chessPosList* lst);
 
 /*Q5*/

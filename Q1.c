@@ -50,6 +50,7 @@ chessPosArray*** initiateChessBoard() {
 	int i, j;
 	chessPosArray*** board;
 	board = (chessPosArray***)malloc(BOARD_SIZE * sizeof(chessPosArray**));
+	checkAlloc(board, "failed to alloc board");
 	for (i = 0; i < BOARD_SIZE; i++) {
 
 		board[i] = (chessPosArray**)malloc(BOARD_SIZE * sizeof(chessPosArray*));

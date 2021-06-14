@@ -14,5 +14,4 @@
 #define NOT_DEFINED -1
 
 void menu();
-
 void freeForAll(pathTree* userPath, chessPosList* fullPath, char* filename);

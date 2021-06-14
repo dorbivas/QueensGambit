@@ -92,10 +92,7 @@ void menu() {
 			break;
 		}
 	} while (userChoice != 6); 
-
-
 }
-
 
 void freeForAll(pathTree* userPath, chessPosList* fullPath,char* filename) {
 	if((*userPath).roots->next_possible_positions)

@@ -1,5 +1,4 @@
 /*QueensGambit Utilty */
-
 #define _CRT_SECURE_NO_WARNINGS
 #include "Util.h"
 
@@ -58,20 +57,6 @@ int charToChessValue(char ch) {
 	return ch - '1';
 }
 
-void checkAlloc(void* ptr, char* msg)
-{
-	if (!ptr)
-	{
-		printf("Allocation failed: %s", msg);
-		exit(1);
-	}
-}
-
-void chessPosSetter(chessPos* dest, chessPos src) {
-	(*dest)[0] = src[0];
-	(*dest)[1] = src[1];
-}
-
 /*Q4 util*/
 void addNewTailToListPos(chessPosList* lst, chessPos newTailPos) {
 	chessPosCell* newTail;
@@ -109,21 +94,17 @@ void reverseList(chessPosList* lst) {
 	chessPosCell* prev, * curr, * next;
 	prev = NULL;
 	if (!isEmptyList(lst)) {
-
 		curr = lst->head;
-	
 		while (curr) {
 			next = curr->next;
 			curr->next = prev;
 			prev = curr;
 			curr = next;
 		}
-	
 		curr = lst->head;
 		lst->head = lst->tail;
 		lst->tail = curr;
 	}
-
 }
 
 void replaceTailInListPos(chessPosList* lst, chessPosCell* newTail, chessPosCell* oldTail) {
@@ -151,6 +132,7 @@ bool isEmptyList(chessPosList* lst) {
 chessPosCell* createNewListNode(chessPos pos, chessPosCell* next) {
 	chessPosCell* res;
 	res = (chessPosCell*)malloc(sizeof(chessPosCell));
+	checkAlloc(res, "failed to alloc newListNode");
 	chessPosSetter(&res->position, pos);
 	res->next = next;
 	return res;
@@ -218,10 +200,24 @@ char* getString() {
 		logical_size++;
 		curr_ch = getchar();
 	}
+
 	/*free the excess memory that is no longer neede*/
 	res = (char*)realloc(res, (logical_size+1) * sizeof(char));
 	checkAlloc(res, "memory allocation for str faild");
 	/*add '\0' in the end of line to create a string*/
 	res[logical_size] = '\0';
-		return (res);
+	return (res);
+}
+
+/*generals*/
+void checkAlloc(void* ptr, char* msg){
+	if (!ptr){
+		printf("Allocation failed: %s", msg);
+		exit(1);
+	}
+}
+
+void chessPosSetter(chessPos* dest, chessPos src) {
+	(*dest)[0] = src[0];
+	(*dest)[1] = src[1];
 }

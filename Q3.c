@@ -98,11 +98,11 @@ void updateVisitMatrix(bool** visitsMatrix, chessPos pos) {
 bool** CreateVisitsMatrix(int size) {
 	int i, j;
 	bool** res = (bool**)malloc(size * sizeof(bool*));
-	checkAlloc(res, "failed too bool a board");
+	checkAlloc(res, "failed to bool a board");
 
 	for (i = 0; i < size; i++){
 		res[i] = (bool*)calloc(size, sizeof(bool)); /*all visits start on false*/
-		checkAlloc(res[i], "failed too bool board[i]");
+		checkAlloc(res[i], "failed to bool board[i]");
 	}
 	return res;
 }

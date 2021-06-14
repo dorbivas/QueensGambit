@@ -78,6 +78,7 @@ void removeSingleCell(chessPosCell* prevCell, chessPosList* list) {
 chessPosCell* Initiate(chessPos data)
 {
 	chessPosCell* newCell = (chessPosCell*)malloc(sizeof(chessPosCell));
+	checkAlloc(newCell, "failed to alloc newCell");
 	newCell->position[0] = data[0];
 	newCell->position[1] = data[1];
 	newCell->next = NULL;

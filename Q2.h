@@ -9,11 +9,9 @@ void display(chessPosList* lst);
 void removeExcessCells(chessPosList* lst, int** boardValues);
 void removeSingleCell(chessPosCell* prevCell, chessPosList* list);
 bool checkApearence(int** boardValues, chessPos pos);
+int** createBoard();
+void freeBoard(int** boardValues);
 
 /*Checking Functions*/
 chessPosCell* Initiate(chessPos data);
 void printList(chessPosList* lst);
-
-int** createBoard();
-
-void freeBoard(int** boardValues);

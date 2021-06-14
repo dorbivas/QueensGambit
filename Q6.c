@@ -1,9 +1,10 @@
+/*QueensGambit Q6 */
+
 #include "Q6.h"
 int checkAndDisplayPathFromFile(char* file_name) {
     int size, res = 3; /*any other case*/
     chessPosList* fileList;
-    FILE* fp = fopen(file_name, "rb");
-
+    FILE* fp = fopen(file_name, "rb"); /*check open menualy to return -1*/
     if (!fp) {
         fprintf(stderr, "Error opening file: %s\n", file_name);
         return -1; /*incase there is no file*/
