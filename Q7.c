@@ -95,8 +95,9 @@ void menu() {
 }
 
 void freeForAll(pathTree* userPath, chessPosList* fullPath,char* filename) {
-	if((*userPath).roots->next_possible_positions)
-		freePath(userPath);
+	if((*userPath).roots)
+		if((*userPath).roots->next_possible_positions)
+			freePath(userPath);
 	if(fullPath)
 		freeListCell(fullPath);
 	if(filename)

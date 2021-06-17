@@ -138,20 +138,22 @@ treeNodeListCell* CreateListCell(chessPos pos) {
 }
 
 void freePath(pathTree* path) {
-	int cntr = 0;
 	if (path->roots->next_possible_positions) {
 		freePathRec(path->roots->next_possible_positions);
 		free(path->roots);
 	}
+	path->roots = NULL;
 }
 
 void freePathRec(treeNodeListCell* cell) {
-	if (cell->next)
-		freePathRec(cell->next);
-	if (cell->node->next_possible_positions)
-		freePathRec(cell->node->next_possible_positions);
-	free(cell->node);
-	free(cell);
+	if (cell) {
+		if (cell->next)
+			freePathRec(cell->next);
+		if (cell->node->next_possible_positions)
+			freePathRec(cell->node->next_possible_positions);
+		free(cell->node);
+		free(cell);
+	}
 }
 
 void freeVisitsMatrix(bool** matrix) {
