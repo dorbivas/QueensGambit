@@ -4,7 +4,8 @@
 #include "Q1.h"
 #include "Q2.h"
 #include "Q3.h"
-#include "Q4.h" /*TODO change includs*/
+#include "Q4.h" /*
+change includs*/
 
 #define MAX_STEPS 25 /*BOARD_SIZE ^ 2*/ 
 

@@ -5,8 +5,7 @@
 #include "Q4.h"
 #include "Q5.h"
 #include "Q6.h"
-#include "Q7.h" /*TODO CHANGE*/
-
+#include "Q7.h" 
 void testQ4();
 void testQ6();
 chessPosList* createListTest();

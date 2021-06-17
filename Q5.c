@@ -102,7 +102,7 @@ void init4PosBytes(Byte* b) {
 	b[2] |= b[3];
 }
 
-Byte createChessPosByte(chessPosCell* curr) { /*TODO name */
+Byte createChessPosByte(chessPosCell* curr) {
 	Byte pos0, pos1;
 	pos0 = posToByte(curr->position[0]);
 	pos1 = posToByte(curr->position[1]);
