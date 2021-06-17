@@ -37,6 +37,9 @@ void menu() {
 
 		case 2:
 			if (userPos[0] != NOT_DEFINED) {
+				if(userPath.roots)/*checks if a path was already constructed*/
+					freePath(&userPath);
+
 				userPath = findAllPossibleKnightPaths(&userPos);
 				printf("\ndone bulding userPath\n");
 			}

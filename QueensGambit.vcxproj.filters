@@ -70,6 +70,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="readme2.txt" />
     <Text Include="readme.txt" />
   </ItemGroup>
 </Project>
